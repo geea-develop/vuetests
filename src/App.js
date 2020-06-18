@@ -33,8 +33,8 @@ function App() {
 	};
 
   return (
-    <div className="app">
 		<Router>
+    <div className="app">
 			<nav className="nav">
 				<ul>
 				<li className="btn btn-link">
@@ -67,8 +67,7 @@ function App() {
 				<Home />
 			</Route>
         </Switch>
-	</Router>
-      <div className="todo-list">
+		<div className="todo-list">
         {todos.map((todo, index) => (
           <Todo
             key={index}
@@ -81,6 +80,8 @@ function App() {
         <TodoForm addTodo={addTodo} />
       </div>
     </div>
+	</Router>
+      
   );
 }
 
