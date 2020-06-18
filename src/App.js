@@ -56,6 +56,15 @@ function App() {
 			</Route>
 			<Route path="/homework">
 				missing homework id
+				
+				
+				
+			
+				
+				
+				
+				
+				
 			</Route>
 			<Route path="/about">
 				{/* <About /> */}
@@ -64,21 +73,23 @@ function App() {
 				{/* <Users /> */}
 			</Route>
 			<Route path="/">
+			<div className="todo-list">
+				{todos.map((todo, index) => (
+					<Todo
+						key={index}
+						index={index}
+						todo={todo}
+						completeTodo={completeTodo}
+						removeTodo={removeTodo}
+					/>
+				))}
+				<TodoForm addTodo={addTodo} />
+
+			</div>
 				<Home />
 			</Route>
         </Switch>
-		<div className="todo-list">
-        {todos.map((todo, index) => (
-          <Todo
-            key={index}
-            index={index}
-            todo={todo}
-            completeTodo={completeTodo}
-            removeTodo={removeTodo}
-          />
-        ))}
-        <TodoForm addTodo={addTodo} />
-      </div>
+		
     </div>
 	</Router>
       
