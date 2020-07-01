@@ -10,7 +10,6 @@ import Homework from "./Homework";
 import Todo from "./Todo";
 import TodoForm from "./TodoForm";
 
-import Home from "./pages/Home"
 
 function App() {
 	const [todos, setTodos] = useState([]);
@@ -86,7 +85,6 @@ function App() {
 				<TodoForm addTodo={addTodo} />
 
 			</div>
-				<Home />
 			</Route>
         </Switch>
 		
