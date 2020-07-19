@@ -2,6 +2,7 @@ import React from "react";
 import {
 	Link,
 } from "react-router-dom";
+import Button from 'react-bootstrap/Button';
 //todo, index, completeTodo, removeTodo
 function Todo(props){
 
@@ -15,8 +16,8 @@ function Todo(props){
 			</Link>
 
 			<div>
-				<button className="btn btn-sm btn-outline-success" onClick={() => props.completeTodo(props.index)}>Complete</button>
-				<button className="btn btn-sm btn-outline-danger ml-1" onClick={() => props.removeTodo(props.index)}>x</button>
+				<Button variant="success" onClick={() => props.completeTodo(props.index)}>Complete</Button>{' '}
+				<Button variant="danger" onClick={() => props.removeTodo(props.index)}>x</Button>
 			</div>
 		</div>
 	);

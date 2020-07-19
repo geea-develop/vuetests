@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 function TodoForm({ addTodo }) {
 	const [value, setValue] = useState("");
 
@@ -11,17 +13,34 @@ function TodoForm({ addTodo }) {
 	};
 
 	return (
-		<form onSubmit={handleSubmit} className="form">
-			<input
-				type="text"
+		
+	<Form onSubmit={handleSubmit} className="form">
+
+
+		<Form.Group controlId="formBasicInput">
+			<Form.Control
+			type="text" 
+			placeholder="homework" 
 				aria-label="addForm"
-				className="input form-control"
-				placeholder="Add homework here..."
-				value={value}
-				onChange={e => setValue(e.target.value)}
+			value={value}
+			onChange={e => setValue(e.target.value)}
 			/>
-		</form>
+		</Form.Group>
+
+	</Form>
   );
 }
 
 export default TodoForm;
+/*
+<form onSubmit={handleSubmit} className="form">
+			<Button
+				type="text"
+				aria-label="addForm"
+				as="input"
+				variant="outline-primary"
+				placeholder="Add homework here..."
+				value={value}
+				onChange={e => setValue(e.target.value)}
+			/>
+		</form>*/
