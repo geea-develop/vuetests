@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./App.css";
-import 'bootstrap/dist/css/bootstrap.min.css';
 import {
 	BrowserRouter as Router,
 	Switch,
@@ -13,8 +12,7 @@ import TodoForm from "./TodoForm";
 
 
 function App() {
-	const [todos, setTodos] = useState([]);
-
+	const [todos, setTodos] = useState([{text:"homework 1"},{text:"homework 2"},{text:"homework 3"}]);
 	const addTodo = text => {
 		const newTodos = [...todos, { text }];
 		setTodos(newTodos);
@@ -31,7 +29,6 @@ function App() {
 		newTodos.splice(index, 1);
 		setTodos(newTodos);
 	};
-
   return (
 		<Router>
     <div className="app">
@@ -94,7 +91,5 @@ function App() {
       
   );
 }
-
-
 
 export default App;
