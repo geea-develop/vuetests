@@ -3,10 +3,17 @@ import {
 	Link,
 } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
+import Anime from 'react-anime';
 //todo, index, completeTodo, removeTodo
-function Todo(props){
 
+function Todo(props){
+	var AnimeProps={
+		opacity:[0,1],
+		translateX:[-40,0],
+		delay:150*props.index
+	};
 	return (
+	<Anime {...AnimeProps}>
 		<div
 		className="todo"
 		style={{ textDecoration: props.todo.isCompleted ? "line-through" : "" }}
@@ -20,6 +27,7 @@ function Todo(props){
 				<Button variant="danger" onClick={() => props.removeTodo(props.index)}>x</Button>
 			</div>
 		</div>
+		</Anime>
 	);
 }
 
