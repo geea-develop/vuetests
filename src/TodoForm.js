@@ -14,6 +14,7 @@ function TodoForm({ addTodo }) {
 		<form onSubmit={handleSubmit} className="form">
 			<input
 				type="text"
+				aria-label="addForm"
 				className="input form-control"
 				placeholder="Add homework here..."
 				value={value}
