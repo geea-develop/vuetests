@@ -9,6 +9,6 @@ test('about page link mounted', () => {
 });
 test('home page link mounted', () => {
   const { getByText } = render(<App />);
-  const linkElement = getByText(/home/i);
+  const linkElement = getByText(/Home/);
   expect(linkElement).toBeInTheDocument();
 });
