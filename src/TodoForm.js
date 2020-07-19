@@ -32,15 +32,3 @@ function TodoForm({ addTodo }) {
 }
 
 export default TodoForm;
-/*
-<form onSubmit={handleSubmit} className="form">
-			<Button
-				type="text"
-				aria-label="addForm"
-				as="input"
-				variant="outline-primary"
-				placeholder="Add homework here..."
-				value={value}
-				onChange={e => setValue(e.target.value)}
-			/>
-		</form>*/
