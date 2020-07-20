@@ -19,7 +19,7 @@ function Todo(props){
 		style={{ textDecoration: props.todo.isCompleted ? "line-through" : "" }}
 		>
 			<Link to={`/homework/${props.index}`} >
-				{props.todo.title || props.todo.text}
+				{ props.todo.text}
 			</Link>
 
 			<div>

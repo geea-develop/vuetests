@@ -10,41 +10,36 @@ import Homework from "./Homework";
 import Todo from "./Todo";
 import TodoForm from "./TodoForm";
 
-
-function App() {
-	function printString(string)
-	{
-		//console.log(string);
-		return string;
+function replaceAll( i,  j,  k)
+{
+	var i2 = i;
+	while(i2.includes(j)){ 
+		i2=i2.replace(j,k);
 	}
+		return i2;
+}
+function App() {
+	
 	const [error, setError] = useState(null);
 	const [isLoaded, setIsLoaded] = useState(false);
 	const [todos, setTodos] = useState([]);
-	//{"title":"homework 1","text":"efwf"},{text:"homework 2"},{text:"homework 3"}
 	
     useEffect(() => {
     fetch("https://my-json-server.typicode.com/typicode/demo/posts")
       .then(res => res.json())
-	  //.then(data => console.log(data))
       .then(
         (result) => {
+			
           setIsLoaded(true);
-		  console.log(result);
-		  
-          setTodos(result);
+          setTodos(JSON.parse(replaceAll(JSON.stringify(result),"title","text")));
         },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
+        
         (error) => {
           setIsLoaded(true);
           setError(error);
         }
       )
   }, []);
-	
-	  //
-	  //
 	const addTodo = text => {
 		const newTodos = [...todos, { text }];
 		setTodos(newTodos);
@@ -87,15 +82,6 @@ function App() {
 			</Route>
 			<Route path="/homework">
 				missing homework id
-				
-				
-				
-			
-				
-				
-				
-				
-				
 			</Route>
 			<Route path="/about">
 				{/* <About /> */}
