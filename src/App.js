@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "./App.css";
 import {
 	BrowserRouter as Router,
@@ -12,11 +12,45 @@ import TodoForm from "./TodoForm";
 
 
 function App() {
-	const [todos, setTodos] = useState([{text:"homework 1"},{text:"homework 2"},{text:"homework 3"}]);
+	function printString(string)
+	{
+		//console.log(string);
+		return string;
+	}
+	const [error, setError] = useState(null);
+	const [isLoaded, setIsLoaded] = useState(false);
+	const [todos, setTodos] = useState([]);
+	//{"title":"homework 1","text":"efwf"},{text:"homework 2"},{text:"homework 3"}
+	
+    useEffect(() => {
+    fetch("https://my-json-server.typicode.com/typicode/demo/posts")
+      .then(res => res.json())
+	  //.then(data => console.log(data))
+      .then(
+        (result) => {
+          setIsLoaded(true);
+		  console.log(result);
+		  
+          setTodos(result);
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
+  }, []);
+	
+	  //
+	  //
 	const addTodo = text => {
 		const newTodos = [...todos, { text }];
 		setTodos(newTodos);
 	};
+	
+	
 	
 	const completeTodo = index => {
 		const newTodos = [...todos];
