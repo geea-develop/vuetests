@@ -1,5 +1,7 @@
 import React, { useState,useEffect } from "react";
 import "./App.css";
+
+
 import {
 	BrowserRouter as Router,
 	Switch,
@@ -18,10 +20,11 @@ function replaceAll( i,  j,  k)
 	}
 		return i2;
 }
+
 function App() {
 	
-	const [error, setError] = useState(null);
-	const [isLoaded, setIsLoaded] = useState(false);
+
+
 	const [todos, setTodos] = useState([]);
 	
     useEffect(() => {
@@ -30,13 +33,8 @@ function App() {
       .then(
         (result) => {
 			
-          setIsLoaded(true);
           setTodos(JSON.parse(replaceAll(JSON.stringify(result),"title","text")));
-        },
         
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
         }
       )
   }, []);

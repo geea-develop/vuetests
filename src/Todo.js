@@ -2,10 +2,20 @@ import React from "react";
 import {
 	Link,
 } from "react-router-dom";
-import Button from 'react-bootstrap/Button';
 import Anime from 'react-anime';
+import styled from 'styled-components'
 //todo, index, completeTodo, removeTodo
+const ButtonSc = styled.button`
+  /* Adapt the colors based on primary prop */
+  background: ${props => props.primary ? "palevioletred" : "white"};
+  color: ${props => props.primary ? "white" : "palevioletred"};
 
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid palevioletred;
+  border-radius: 3px;
+`;
 function Todo(props){
 	var AnimeProps={
 		opacity:[0,1],
@@ -13,22 +23,24 @@ function Todo(props){
 		delay:150*props.index
 	};
 	return (
-	<Anime {...AnimeProps}>
-		<div
-		className="todo"
-		style={{ textDecoration: props.todo.isCompleted ? "line-through" : "" }}
-		>
-			<Link to={`/homework/${props.index}`} >
-				{ props.todo.text}
-			</Link>
-
-			<div>
-				<Button variant="success" onClick={() => props.completeTodo(props.index)}>Complete</Button>{' '}
-				<Button variant="danger" onClick={() => props.removeTodo(props.index)}>x</Button>
+		<Anime {...AnimeProps}>
+			<div className="todo">
+				<Link to={`/homework/${props.index}`} style={{textDecoration: props.todo.isCompleted?"line-through":""}}>
+					{props.todo.text}
+				</Link>
+				<div>
+					<ButtonSc
+						disabled={props.todo.isCompleted}
+						onClick={()=>props.completeTodo(props.index)} 
+					>
+						Complete
+					</ButtonSc>
+					<ButtonSc primary onClick={()=>props.removeTodo(props.index)}>
+						x
+					</ButtonSc>
+				</div>
 			</div>
-		</div>
 		</Anime>
 	);
 }
-
   export default Todo;
