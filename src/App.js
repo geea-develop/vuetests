@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import Homework from "./Homework";
 import Todo from "./Todo";
+import BasicForm from "./BasicForm";
 import TodoForm from "./TodoForm";
 
 function replaceAll( i,  j,  k)
@@ -86,6 +87,10 @@ function App() {
 			</Route>
 			<Route path="/users">
 				{/* <Users /> */}
+			</Route>
+			<Route path="/login">
+				<BasicForm>
+				</BasicForm>
 			</Route>
 			<Route path="/">
 			<div className="todo-list">
