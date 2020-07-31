@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "./App.css";
+
+
 import {
 	BrowserRouter as Router,
 	Switch,
@@ -8,17 +10,41 @@ import {
 } from "react-router-dom";
 import Homework from "./Homework";
 import Todo from "./Todo";
+import BasicForm from "./BasicForm";
 import TodoForm from "./TodoForm";
 
-import Home from "./pages/Home"
+function replaceAll( i,  j,  k)
+{
+	var i2 = i;
+	while(i2.includes(j)){ 
+		i2=i2.replace(j,k);
+	}
+		return i2;
+}
 
 function App() {
-	const [todos, setTodos] = useState([]);
+	
 
+
+	const [todos, setTodos] = useState([]);
+	
+    useEffect(() => {
+    fetch("https://my-json-server.typicode.com/typicode/demo/posts")
+      .then(res => res.json())
+      .then(
+        (result) => {
+			
+          setTodos(JSON.parse(replaceAll(JSON.stringify(result),"title","text")));
+        
+        }
+      )
+  }, []);
 	const addTodo = text => {
 		const newTodos = [...todos, { text }];
 		setTodos(newTodos);
 	};
+	
+	
 	
 	const completeTodo = index => {
 		const newTodos = [...todos];
@@ -31,7 +57,6 @@ function App() {
 		newTodos.splice(index, 1);
 		setTodos(newTodos);
 	};
-
   return (
 		<Router>
     <div className="app">
@@ -63,28 +88,31 @@ function App() {
 			<Route path="/users">
 				{/* <Users /> */}
 			</Route>
+			<Route path="/login">
+				<BasicForm>
+				</BasicForm>
+			</Route>
 			<Route path="/">
-				<Home />
+			<div className="todo-list">
+				{todos.map((todo, index) => (
+					<Todo
+						key={index}
+						index={index}
+						todo={todo}
+						completeTodo={completeTodo}
+						removeTodo={removeTodo}
+					/>
+				))}
+				<TodoForm addTodo={addTodo} />
+
+			</div>
 			</Route>
         </Switch>
-		<div className="todo-list">
-        {todos.map((todo, index) => (
-          <Todo
-            key={index}
-            index={index}
-            todo={todo}
-            completeTodo={completeTodo}
-            removeTodo={removeTodo}
-          />
-        ))}
-        <TodoForm addTodo={addTodo} />
-      </div>
+		
     </div>
 	</Router>
       
   );
 }
-
-
 
 export default App;
